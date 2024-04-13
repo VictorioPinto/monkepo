@@ -1,7 +1,7 @@
 const imagem = document.getElementsByTagName("img")[0];
 const ul = document.getElementsByTagName("ul")[0];
 const input = document.getElementsByTagName("input")[0];
-
+const h2 = document.getElementsByTagName("h2")[0];
 let pokemonOriginal = {};
 
 const fetchPokemon = async (id) => {
@@ -44,14 +44,14 @@ const fetchPokemon = async (id) => {
   pokemonOriginal.type1 = data["types"]["0"]["type"]["name"];
   pokemonOriginal.type2 = type2;
   pokemonOriginal.weight = data.weight / 10;
-  // console.log(pokemonOriginal);
+  console.log(pokemonOriginal);
 };
 
 const adivinhar = async (id) => {
   const req = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${id.toLowerCase()}`
   );
-
+  h2.textContent = "adivinhe o pokemon";
   const data = await req.json();
   const idPokemon = data.id;
   let tipo1 = data.types["0"].type.name;
@@ -148,7 +148,7 @@ const adivinhar = async (id) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  let id = Math.floor(Math.random() * 1000) + 1;
+  let id = Math.floor(Math.random() * 1025) + 1;
 
   fetchPokemon(id);
 });
@@ -168,7 +168,7 @@ function removerDiv() {
 }
 const trocar = document.getElementById("Trocar");
 trocar.onclick = function () {
-  let id = Math.floor(Math.random() * 1000) + 1;
+  let id = Math.floor(Math.random() * 1025) + 1;
   fetchPokemon(id);
   removerDiv();
   input.disabled = false;
